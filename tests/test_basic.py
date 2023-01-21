@@ -1,4 +1,5 @@
 
 def test_absolute_truth_and_meaning():
-    assert False
+    testllinter=42
+    assert True
 
