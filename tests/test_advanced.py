@@ -12,5 +12,5 @@ class AdvancedTestSuite(unittest.TestCase):
         self.assertIsNone(dasai.hmm())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
