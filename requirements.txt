@@ -1,4 +1,7 @@
 nose
 sphinx
-python-dotenv~=0.21.0
-setuptools~=60.2.0
+python-dotenv
+setuptools
+pandas
+requests
+alpha_vantage
