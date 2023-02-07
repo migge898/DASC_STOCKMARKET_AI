@@ -7,3 +7,4 @@ requests
 alpha_vantage
 piccolo-theme==0.14.0
 sphinx-rtd-theme==1.1.1
+sphinx-copybutton==0.5.1

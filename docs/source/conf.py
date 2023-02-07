@@ -25,6 +25,7 @@ release = '0.1'
 
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx_copybutton',
 ]
 
 templates_path = ['_templates']
