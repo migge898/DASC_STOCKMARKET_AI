@@ -11,16 +11,14 @@ jobs:
     - name: Install dependencies
       run: |
         pip install sphinx sphinx_rtd_theme sphinx-copybutton
-    - name: Build HTML
-      uses: ammaraskar/sphinx-action@master
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: html-docs
-        path: docs/build/html/
+    - name: Sphinx build
+      run: |
+        sphinx-build doc _build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
+      if: ${{ github.event_name == 'push'}}
       with:
+        publish_branch: gh-pages
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: docs/build/html
+        publish_dir: _build/
+        force_orphan: true
