@@ -6,13 +6,17 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import pathlib
 import sys
+import pathlib
+from datetime import datetime
+
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
-
 project = 'dasai'
-copyright = '2023, Miguel Mioskowski, Marie Koch, Damien Völker'
+# copyright with generated year
+
+
+copyright = '%d, Miguel Mioskowski, Marie Koch, Damien Völker' % datetime.now().year
 author = 'Miguel Mioskowski, Marie Koch, Damien Völker'
 release = '0.1'
 
@@ -21,7 +25,6 @@ release = '0.1'
 
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
     'sphinx_copybutton'
 ]
 
@@ -40,5 +43,8 @@ html_context = {
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'piccolo_theme'
+html_theme = 'sphinx_rtd_theme'
+
 html_static_path = ['_static']
+
+root_doc = 'index'

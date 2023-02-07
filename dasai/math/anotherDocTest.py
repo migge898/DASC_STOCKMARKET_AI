@@ -1,12 +1,12 @@
-def add(a: int, b: int) -> int:
+def multiply(a, b):
     """
-    Return the sum of a and b
+    Return the product of a and b
 
     :param a: number
     :type a: int
     :param b: number
     :type b: int
-    :return: sum of a and b
+    :return: product of a and b
     :rtype: int
     """
-    return a + b
+    return a * b

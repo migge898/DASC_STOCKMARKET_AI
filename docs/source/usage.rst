@@ -9,9 +9,4 @@ To use dasai, first install it using pip:
 
     (.venv) $ pip install dasai
 
-Contents
---------
 
-You can test the ``add(a, b)`` function in the ``dasai`` package:
-
-.. autofunction:: dasai.docTest.add
