@@ -5,3 +5,5 @@ setuptools
 pandas
 requests
 alpha_vantage
+matplotlib
+pyarrow
