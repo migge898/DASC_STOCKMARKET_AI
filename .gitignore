@@ -131,6 +131,3 @@ dmypy.json
 
 # own notebooks
 /my_notebooks/
-
-# local data
-/data/
