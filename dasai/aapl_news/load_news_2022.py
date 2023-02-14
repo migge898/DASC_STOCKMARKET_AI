@@ -96,8 +96,12 @@ while i <= 12 and retry_counter < max_retries:
             print(f"Month {i}: Exception occurred. Month will be skipped")
             i += 1
 
+
 # reset index for unique indexes
 df = df.reset_index()
+
+# drop index column inherited from monthly dataframes
+df = df.drop(['index'], axis=1)
 
 # safe the json object to a file for easier access
 raw_data_path = get_raw_data_path()
