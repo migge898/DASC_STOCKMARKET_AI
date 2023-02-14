@@ -2,11 +2,10 @@ import pandas as pd
 
 from dasai.helpers import get_raw_data_path
 from dasai.helpers import get_tidy_data_path
-print("start")
+
 # load data from json file
 raw_data_path = get_raw_data_path()
 df = pd.read_json(raw_data_path / 'aapl_news.json')
-print("after read")
 
 # Transform the custom date-format-string to a real date
 df['time_published'] = \
@@ -99,4 +98,4 @@ df['sentiment_score_aapl'] = df['sentiment_score_aapl'].astype('float64')
 tidy_data_path = get_tidy_data_path()
 tidy_data_path.mkdir(parents=True, exist_ok=True)
 df.to_parquet(tidy_data_path / 'aapl_news.parquet')
-print("Dataframe has been saved")
+print(f"Dataframe has been saved at {tidy_data_path / 'aapl_news.parquet'}")
