@@ -101,7 +101,7 @@ while i <= 12 and retry_counter < max_retries:
 df = df.reset_index()
 
 # drop index column inherited from monthly dataframes
-df = df.drop(['index'], axis=1)
+df = df.drop(["index"], axis=1)
 
 # safe the json object to a file for easier access
 raw_data_path = get_raw_data_path()

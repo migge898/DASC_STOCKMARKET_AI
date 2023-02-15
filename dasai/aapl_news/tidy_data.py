@@ -8,8 +8,7 @@ raw_data_path = get_raw_data_path()
 df = pd.read_json(raw_data_path / "aapl_news.json")
 
 # Transform the custom date-format-string to a real date
-df["time_published"] = pd.to_datetime(df["time_published"],
-                                      format="%Y%m%dT%H%M%S")
+df["time_published"] = pd.to_datetime(df["time_published"], format="%Y%m%dT%H%M%S")
 
 # Keep only interesting columns
 df = df[
@@ -86,8 +85,7 @@ df = df.query('`ticker_sentiment.ticker` == "AAPL"')
 
 # remove ticker column (it contains "AAPL" for every entry)
 df = df.drop(
-    ["ticker_sentiment.ticker", "ticker_sentiment.ticker_sentiment_label"],
-    axis=1
+    ["ticker_sentiment.ticker", "ticker_sentiment.ticker_sentiment_label"], axis=1
 )
 
 # rename columns
