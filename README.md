@@ -4,3 +4,6 @@
 
 Group-Project for module Data-Science at TH Bingen.
 
+## Documentation
+
+See: [Documentation](https://migge898.github.io/DASC_STOCKMARKET_AI/)
