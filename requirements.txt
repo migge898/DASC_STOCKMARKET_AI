@@ -1,9 +1,12 @@
 nose
 sphinx
-python-dotenv
-setuptools
-pandas
-requests
+python-dotenv~=0.21.0
+setuptools~=60.2.0
+pandas~=1.5.3
+requests~=2.28.1
 alpha_vantage
 matplotlib
 pyarrow
+numpy
+wordfreq
+dasai~=0.1.0
