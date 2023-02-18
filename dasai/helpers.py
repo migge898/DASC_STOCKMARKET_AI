@@ -14,3 +14,8 @@ def get_raw_data_path():
 def get_tidy_data_path():
     """return path to tidy data"""
     return get_path_to_data() / "tidy_data"
+
+
+def get_cleaned_data_path():
+    """return path to cleaned data"""
+    return get_path_to_data() / "cleaned_data"
