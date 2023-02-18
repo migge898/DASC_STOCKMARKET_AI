@@ -1,7 +1,6 @@
 import requests
 import csv
 import os
-import pandas as pd
 
 from dasai.helpers import get_raw_data_path
 
