@@ -131,3 +131,6 @@ dmypy.json
 
 # own notebooks
 /my_notebooks/
+
+# pycharm
+.idea/

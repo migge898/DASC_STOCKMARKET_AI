@@ -3,4 +3,4 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print(os.getenv("ALPHAVENTAGE_API_KEY"))
+my_key = os.getenv("ALPHAVENTAGE_API_KEY")
