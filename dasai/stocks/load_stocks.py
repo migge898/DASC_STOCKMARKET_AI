@@ -30,13 +30,14 @@ def download_and_save_stock_data(symbol, overwrite=False):
     :type overwrite: bool
 
     """
-    url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}" \
-          f"&datatype=csv&outputsize=full&apikey={my_key}"
+    url = (
+        f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}"
+        f"&datatype=csv&outputsize=full&apikey={my_key}"
+    )
     # url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo"
     response = requests.get(url)
 
     if response.status_code == 200:
-
         # Get the CSV data from the response
         csv_data = response.text
 
@@ -45,22 +46,22 @@ def download_and_save_stock_data(symbol, overwrite=False):
             return
         else:
             # Write the CSV data to a file
-            filepath = get_raw_data_path() / f'{symbol}.csv'
+            filepath = get_raw_data_path() / f"{symbol}.csv"
 
             # if file exists and overwrite is False, create a new file with a number
 
             if not overwrite:
                 i = 1
                 while os.path.exists(filepath):
-                    filepath = get_raw_data_path() / f'{symbol}_{i}.csv'
+                    filepath = get_raw_data_path() / f"{symbol}_{i}.csv"
                     i += 1
 
-            with open(filepath, 'w', newline='') as file:
+            with open(filepath, "w", newline="") as file:
                 writer = csv.writer(file)
                 reader = csv.reader(csv_data.splitlines())
                 for row in reader:
                     writer.writerow(row)
 
-            print('CSV file saved.')
+            print("CSV file saved.")
     else:
-        print('Error: Request failed with status code', response.status_code)
+        print("Error: Request failed with status code", response.status_code)
