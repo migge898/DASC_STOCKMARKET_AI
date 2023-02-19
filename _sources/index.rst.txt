@@ -18,6 +18,13 @@ Table of contents
     examples
     module_documentation
 
+Indices
+==================
+* :ref:`genindex`
+* :ref:`modindex`
+
+
+
 License
 =======
 
