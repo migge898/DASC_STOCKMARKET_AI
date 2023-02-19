@@ -51,6 +51,7 @@ def get_news_by_month(month: int, time_limits: []):
     tickers = "AAPL"
     time_from = time_limits[2 * (month - 1)]
     time_to = time_limits[2 * (month - 1) + 1]
+    print(f'time_from={time_from}, time_to={time_to}')
     sort = "RELEVANCE"
     limit = 200
 
