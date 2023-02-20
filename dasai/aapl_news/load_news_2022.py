@@ -41,9 +41,9 @@ def generate_time_limit_strings_2022():
 def get_news_by_month(month: int, time_limits: []):
     """
     Helper function to get the 200 most relevant apple news of 2022 by publishing month
-    :param time_limits: time limits for all months of the specific year
+    :param time_limits: Time limits for all months of the specific year
     :type time_limits: []
-    :param month: the month of the news you want
+    :param month: The month of the news you want
     :type month: int
     :return: 200 most relevant apple news of specified month
     """
@@ -51,7 +51,6 @@ def get_news_by_month(month: int, time_limits: []):
     tickers = "AAPL"
     time_from = time_limits[2 * (month - 1)]
     time_to = time_limits[2 * (month - 1) + 1]
-    print(f'time_from={time_from}, time_to={time_to}')
     sort = "RELEVANCE"
     limit = 200
 
@@ -76,8 +75,8 @@ def get_news_by_month(month: int, time_limits: []):
 
 def get_aapl_news_2022():
     """
-    Gets the apple news for each month of 2022 and concatenate to one Dataframe
-    :return: The concatenated Dataframe with
+    Gets the Apple news for each month of 2022 and concatenate to one Dataframe
+    :return: The concatenated Dataframe with the most relevant Apple-news of 2022
     """
     retry_counter = 0
     max_retries = 3
