@@ -150,5 +150,5 @@ def load_and_save_news_2022():
     save_dataframe_to_file(df)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_and_save_news_2022()

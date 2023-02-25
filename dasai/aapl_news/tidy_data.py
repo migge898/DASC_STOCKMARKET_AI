@@ -170,5 +170,5 @@ def tidy_and_save_news():
     save_dataframe(df)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     tidy_and_save_news()

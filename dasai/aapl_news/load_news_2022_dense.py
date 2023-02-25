@@ -34,12 +34,12 @@ def generate_time_limit_strings_2022():
     time_limits = []
     for i in range(3, 13):
         month = f"{i}" if i > 9 else f"0{i}"  # two-digit month
-        time_limits.append(f'2022{month}01T0101')
-        time_limits.append(f'2022{month}05T0101')
-        time_limits.append(f'2022{month}10T0101')
-        time_limits.append(f'2022{month}15T0101')
-        time_limits.append(f'2022{month}20T0101')
-        time_limits.append(f'2022{month}25T0101')
+        time_limits.append(f"2022{month}01T0101")
+        time_limits.append(f"2022{month}05T0101")
+        time_limits.append(f"2022{month}10T0101")
+        time_limits.append(f"2022{month}15T0101")
+        time_limits.append(f"2022{month}20T0101")
+        time_limits.append(f"2022{month}25T0101")
     return time_limits
 
 
@@ -91,7 +91,7 @@ def get_aapl_news_2022():
     # for all timeframes
     while i <= len(time_limits) - 2 and retry_counter < max_retries:
         time_from = time_limits[i]
-        time_to = time_limits[i+1]
+        time_to = time_limits[i + 1]
         try:
             is_data_found, df_month = get_news_by_month(time_from, time_to)
             if is_data_found:
@@ -112,7 +112,9 @@ def get_aapl_news_2022():
                 )
                 time.sleep(65)
             else:
-                print(f"{time_from}-{time_to}: Exception occurred. Timeframe will be skipped")
+                print(
+                    f"{time_from}-{time_to}: Exception occurred. Timeframe will be skipped"
+                )
                 i += 1
     return df
 
@@ -157,5 +159,5 @@ def load_and_save_news_2022():
     save_dataframe_to_file(df)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_and_save_news_2022()
