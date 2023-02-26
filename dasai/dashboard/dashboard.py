@@ -17,6 +17,8 @@ tidy_data_path = get_tidy_data_path()
 symbols =['AAPL', 'NFLX', 'KO', 'IBM', 'MSFT']
 symbol = symbols[0]
 
+stock_names= {'AAPL': 'Apple' , 'NFLX': 'Netflix', 'KO': 'Coca Cola', 'IBM': 'IBM', 'MSFT': 'Microsoft'}
+
 df_stocks = pd.read_parquet('..\..' / cleaned_data_path / f'{symbol}.parquet')
 df_news = pd.read_parquet('..\..' / tidy_data_path / f'{symbol.lower()}_news_dense.parquet')
 
@@ -59,6 +61,9 @@ app.layout = html.Div(children=[
         options=symbol_options,
         value=symbols[0]
     ),
+
+    html.H1(f'{stock_names.get(symbol)} Stocks'),
+
     html.Div([
         html.H4('Stock History'),
         dcc.Graph(
