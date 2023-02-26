@@ -19,3 +19,8 @@ def get_tidy_data_path():
 def get_cleaned_data_path():
     """return path to cleaned data"""
     return get_path_to_data() / "cleaned_data"
+
+
+def get_result_data_path():
+    """return path to result data"""
+    return get_path_to_data() / "result_data"
