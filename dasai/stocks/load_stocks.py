@@ -1,8 +1,9 @@
 import requests
 import csv
 import os
+import pandas as pd
 
-from dasai.helpers import get_raw_data_path
+from dasai.helpers import *
 
 from dasai.stocks import my_key
 
@@ -65,3 +66,37 @@ def download_and_save_stock_data(symbol, overwrite=False):
             print("CSV file saved.")
     else:
         print("Error: Request failed with status code", response.status_code)
+
+
+def convert_to_cleaned_data(input_file: str, output_file: str):
+    """
+    Convert the raw data to a cleaned data format.
+    :param input_file: path to the raw data
+    :type input_file: str
+    :param output_file: path to the cleaned data
+    :type output_file: str
+    :return: cleaned data
+    :rtype: pd.DataFrame
+    """
+
+    df = pd.read_csv(input_file)
+    expected_columns = ['timestamp', 'open', 'high', 'low', 'close', 'adjusted_close', 'volume', 'dividend_amount',
+                        'split_coefficient']
+    assert all(column in df.columns for column in
+               expected_columns), f"Expected columns {expected_columns}, but got {df.columns.tolist()} instead."
+
+    df = df.rename(columns={'timestamp': 'date'})
+    # timestamp column as timestamp and index
+    df['date'] = pd.to_datetime(df['date'])
+    df.set_index('date', inplace=True)
+
+    # get data from last 5 years
+    five_years_ago = pd.Timestamp.today() - pd.Timedelta(days=365 * 5)
+    df = df[df.index >= five_years_ago]
+
+    # drop all columns except for adjusted_close
+    df_adjusted_close = df[['adjusted_close']]
+
+    df_adjusted_close.to_parquet(output_file)
+
+    return df
