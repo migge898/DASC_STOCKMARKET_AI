@@ -179,4 +179,4 @@ def tidy_and_save_news(input_file: str, output_file: str):
 
 
 if __name__ == "__main__":
-    tidy_and_save_news('apple_news.json', 'apple_news.parquet')
+    tidy_and_save_news("apple_news.json", "apple_news.parquet")
