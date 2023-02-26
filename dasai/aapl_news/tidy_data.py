@@ -4,13 +4,15 @@ from dasai.helpers import get_raw_data_path
 from dasai.helpers import get_tidy_data_path
 
 
-def load_apple_news():
+def load_apple_news(input_file: str):
     """
-    Loads the apple news from the .json file
+    Loads the Apple news from the .json file
+    :param input_file: Name of the raw json file to load, must be in the raw_data folder
+    :type input_file: str
     :return: Dataframe with raw news
     """
     raw_data_path = get_raw_data_path()
-    return pd.read_json(raw_data_path / "aapl_news.json")
+    return pd.read_json(raw_data_path / input_file)
 
 
 def transform_date(df: pd.DataFrame):
@@ -144,31 +146,37 @@ def tidy_data(df: pd.DataFrame):
     return df
 
 
-def save_dataframe(df: pd.DataFrame):
+def save_dataframe(df: pd.DataFrame, output_file: str):
     """
     Saves the specified Dataframe as a .parquet file
     :param df: The Dataframe to save
     :type df: pandas.Dataframe
+    :param output_file: The name of the output file
+    :type output_file: str
     :return: None
     """
     tidy_data_path = get_tidy_data_path()
     tidy_data_path.mkdir(parents=True, exist_ok=True)
-    df.to_parquet(tidy_data_path / "aapl_news.parquet")
-    print(f"Dataframe has been saved at {tidy_data_path / 'aapl_news.parquet'}")
+    df.to_parquet(tidy_data_path / output_file)
+    print(f"Dataframe has been saved at {tidy_data_path / output_file}")
 
 
-def tidy_and_save_news():
+def tidy_and_save_news(input_file: str, output_file: str):
     """
     Loads the raw .json file, create tidy data from it and save this as a .parquet file
+    :param input_file: The name of the input file, has to be in the raw_data folder
+    :type input_file: str
+    :param output_file: The name of the output file, will be saved in the tidy_data folder
+    :type output_file: str
     :return: None
     """
-    df = load_apple_news()
+    df = load_apple_news(input_file)
     df = transform_date(df)
     df = remove_useless_columns(df)
     df = flatten_ticket_sentiment(df)
     df = tidy_data(df)
-    save_dataframe(df)
+    save_dataframe(df, output_file)
 
 
 if __name__ == "__main__":
-    tidy_and_save_news()
+    tidy_and_save_news('apple_news.json', 'apple_news.parquet')
