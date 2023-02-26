@@ -1,10 +1,12 @@
 from dash import Dash, html, dcc, Input, Output
+import dash_bootstrap_components as dbc
+
 import plotly.express as px
 import pandas as pd
 from dasai.helpers import get_cleaned_data_path, get_tidy_data_path
 
 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
 
 
 
@@ -38,6 +40,15 @@ fig = px.line(
     df_stocks,
     x=df_stocks.index,
     y='adjusted_close',
+    labels={'index': 'date', 'adjusted_close' : 'adjusted close values'}
+
+)
+
+fig1 = px.line(
+    df_stocks.head(10),
+    x=df_stocks.head(10).index,
+    y='adjusted_close',
+    labels={'x': 'date', 'adjusted_close' : 'adjusted close values'}
 
 )
 
@@ -51,7 +62,8 @@ fig2 = px.scatter(
     color='source',
     size=f'relevance_score_{symbol.lower()}',
     color_continuous_scale='ice',
-    opacity=0.6
+    opacity=0.6,
+    labels={'x': 'date', 'y' : 'sentiment score'}
 )
 
 app.layout = html.Div(children=[
@@ -71,6 +83,14 @@ app.layout = html.Div(children=[
             figure=fig
         )
     ]),
+    html.Div([
+        html.H4('Prediction'),
+        dcc.Graph(
+            id='stock_graph_prediction',
+            figure=fig1
+        )
+    ]),
+
     html.Div([
         html.H4('Sentiment Score by News'),
         html.P('News Source:'),
