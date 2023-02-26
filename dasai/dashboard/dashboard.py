@@ -2,18 +2,31 @@ from dash import Dash, html, dcc, Input, Output
 import plotly.express as px
 import pandas as pd
 from dasai.helpers import get_cleaned_data_path, get_tidy_data_path
-import os
+
 
 app = Dash(__name__)
+
+
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
 cleaned_data_path = get_cleaned_data_path()
 tidy_data_path = get_tidy_data_path()
-print(os.getcwd())
 
-df_stocks = pd.read_parquet('..\..' / cleaned_data_path / 'AAPL.parquet')
-df_news = pd.read_parquet('..\..' / tidy_data_path / f'aapl_news.parquet')
+
+symbols =['AAPL', 'NFLX', 'KO', 'IBM', 'MSFT']
+symbol = symbols[0]
+
+df_stocks = pd.read_parquet('..\..' / cleaned_data_path / f'{symbol}.parquet')
+df_news = pd.read_parquet('..\..' / tidy_data_path / f'{symbol.lower()}_news_dense.parquet')
+
+# Define the dropdown options
+symbol_options = [{'label': symbol, 'value': symbol} for symbol in symbols]
+dcc.Dropdown(
+    id='symbol-dropdown',
+    options=symbol_options,
+    value=symbols[0]
+),
 
 # print(df_stocks.describe(include='all') )
 # print(df_news.columns)
@@ -28,43 +41,85 @@ fig = px.line(
 
 # Define the dropdown options
 options = [{'label': i, 'value': i} for i in df_news['source'].unique()]
+
 fig2 = px.scatter(
     df_news,
     x='time_published',
-    y='sentiment_score_aapl',
+    y=f'sentiment_score_{symbol.lower()}',
     color='source',
-    size='relevance_score_aapl',
+    size=f'relevance_score_{symbol.lower()}',
     color_continuous_scale='ice',
-    opacity=0.4
+    opacity=0.6
 )
 
 app.layout = html.Div(children=[
     html.H2('DASC Stockmarket AI'),
-    html.H4('Stock History'),
-    dcc.Graph(
-        id='stock_graph',
-        figure=fig
+    dcc.Dropdown(
+        id='symbol-dropdown',
+        options=symbol_options,
+        value=symbols[0]
     ),
-    html.H4('Sentiment Score by News'),
-    html.P('News Source:'),
-    dcc.Dropdown(id='source-dropdown', options=options, value='Forbes'),
-    dcc.Graph(
-        id='news_graph',
-        figure=fig2
-    )
+    html.Div([
+        html.H4('Stock History'),
+        dcc.Graph(
+            id='stock_graph',
+            figure=fig
+        )
+    ]),
+    html.Div([
+        html.H4('Sentiment Score by News'),
+        html.P('News Source:'),
+        dcc.Dropdown(id='source-dropdown', options=options, value='Forbes'),
+        dcc.Graph(
+            id='news_graph',
+            figure=fig2
+        )
+    ])
 ])
 
 
-# Define the callback to update the graph based on the dropdown selection
-@app.callback(
-    Output('news_graph', 'figure'),
-    [Input('source-dropdown', 'value')]
-)
-def update_graph(selected_news_source):
-    filtered_df = df_news[df_news['source'] == selected_news_source]
-    fig2 = px.scatter(filtered_df, x='time_published', y='sentiment_score_aapl', size='relevance_score_aapl')
-    return fig2
 
+# Define the callback to update the graph based on the dropdown selection
+
+@app.callback(
+    [
+        Output('stock_graph', 'figure'),
+        Output('news_graph', 'figure')
+    ],
+    [
+        Input('symbol-dropdown', 'value'),
+        Input('source-dropdown', 'value')
+    ]
+
+)
+def update_graph(symbol, selected_news_source):
+    df_stocks = pd.read_parquet('..\..' / cleaned_data_path / f'{symbol}.parquet')
+    df_news = pd.read_parquet('..\..' / tidy_data_path / f'{symbol.lower()}_news_dense.parquet')
+
+    filtered_df = df_news[df_news['source'] == selected_news_source]
+
+
+
+    fig_stocks = px.line(
+        df_stocks,
+        x=df_stocks.index,
+        y='adjusted_close'
+    )
+
+    options = [{'label': i, 'value': i} for i in df_news['source'].unique()]
+
+    fig_news = px.scatter(
+        filtered_df,
+        x='time_published',
+        y=f'sentiment_score_{symbol.lower()}',
+        color='source',
+        size=f'relevance_score_{symbol.lower()}',
+        color_continuous_scale='ice',
+        opacity=0.6
+    )
+
+
+    return fig_stocks, fig_news
 
 if __name__ == '__main__':
     app.run_server(debug=True)
