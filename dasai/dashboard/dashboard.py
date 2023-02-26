@@ -96,45 +96,14 @@ fig1.add_trace(
 # Set the axis labels
 fig1.update_layout(
     xaxis_title='date',
-    yaxis_title='predicted values',
+    yaxis_title='predicted weekly values',
     title='Prediction'
 )
 
-figw = go.Figure()
+figw = px.line(x=df_result['ds'],
+                y=df_result['weekly']
+               )
 
-# Add the line trace for yhat
-figw.add_trace(
-    go.Scatter(
-        x=df_result['ds'],
-        y=df_result['weekly'],
-        name='predicted value'
-    )
-)
-
-
-
-# Add the fill trace between yhat_lower and yhat_upper
-figw.add_trace(
-    go.Scatter(
-        x=df_result['ds'],
-        y=df_result['weekly_upper'],
-        fill=None,
-        mode='lines',
-        line_color='rgba(0,0,0,0)',
-        showlegend=False
-    )
-)
-
-figw.add_trace(
-    go.Scatter(
-        x=df_result['ds'],
-        y=df_result['weekly_lower'],
-        fill='tonexty',
-        mode='lines',
-        line_color='rgba(0,0,0,0)',
-        name='confidence interval'
-    )
-)
 
 
 # Set the axis labels
@@ -220,7 +189,8 @@ def update_graph(symbol, selected_news_source):
     fig_stocks = px.line(
         df_stocks,
         x=df_stocks.index,
-        y='adjusted_close'
+        y='adjusted_close',
+        labels={'index': 'date', 'adjusted_close': 'adjusted close values'}
     )
 
     options = [{'label': i, 'value': i} for i in df_news['source'].unique()]
@@ -231,7 +201,6 @@ def update_graph(symbol, selected_news_source):
         y=f'sentiment_score_{symbol.lower()}',
         color='source',
         size=f'relevance_score_{symbol.lower()}',
-        color_continuous_scale='ice',
         opacity=0.6
     )
 
