@@ -6,10 +6,7 @@ import plotly.graph_objects as go
 import pandas as pd
 from dasai.helpers import get_cleaned_data_path, get_tidy_data_path, get_result_data_path
 
-
 app = Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
-
-
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
@@ -17,17 +14,16 @@ cleaned_data_path = get_cleaned_data_path()
 tidy_data_path = get_tidy_data_path()
 result_data_path = get_result_data_path()
 
-
-symbols =['AAPL', 'NFLX', 'KO', 'IBM', 'MSFT']
+symbols = ['AAPL', 'NFLX', 'KO', 'IBM', 'MSFT']
 symbol = symbols[0]
 
-stock_names= {'AAPL': 'Apple', 'NFLX': 'Netflix', 'KO': 'Coca Cola', 'IBM': 'IBM', 'MSFT': 'Microsoft'}
+stock_names = {'AAPL': 'Apple', 'NFLX': 'Netflix', 'KO': 'Coca Cola', 'IBM': 'IBM', 'MSFT': 'Microsoft'}
 
 df_stocks = pd.read_parquet('..\..' / cleaned_data_path / f'{symbol}.parquet')
 df_news = pd.read_parquet('..\..' / tidy_data_path / f'{symbol.lower()}_news_dense.parquet')
 df_result = pd.read_csv('..\..' / result_data_path / f'{symbol.lower()}_news_forecast_test.csv')
 
-print(df_result)
+#print(df_result)
 
 # Define the dropdown options
 symbol_options = [{'label': symbol, 'value': symbol} for symbol in symbols]
@@ -45,7 +41,7 @@ fig = px.line(
     df_stocks,
     x=df_stocks.index,
     y='adjusted_close',
-    labels={'index': 'date', 'adjusted_close' : 'adjusted close values'}
+    labels={'index': 'date', 'adjusted_close': 'adjusted close values'}
 
 )
 
@@ -56,9 +52,22 @@ fig1.add_trace(
     go.Scatter(
         x=df_result['ds'],
         y=df_result['yhat'],
-        name='yhat'
+        name='predicted value'
     )
 )
+
+actual = df_stocks.loc[df_stocks.index.isin(df_result['ds'])]
+
+
+fig1.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=actual['adjusted_close'],
+        name='actual adjusted close value',
+        line_color='indigo'
+    )
+)
+
 
 # Add the fill trace between yhat_lower and yhat_upper
 fig1.add_trace(
@@ -79,16 +88,61 @@ fig1.add_trace(
         fill='tonexty',
         mode='lines',
         line_color='rgba(0,0,0,0)',
-        name='Confidence Interval'
+        name='confidence interval'
     )
 )
+
 
 # Set the axis labels
 fig1.update_layout(
     xaxis_title='date',
-    yaxis_title='adjusted close values'
+    yaxis_title='predicted values',
+    title='Prediction'
 )
 
+figw = go.Figure()
+
+# Add the line trace for yhat
+figw.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=df_result['weekly'],
+        name='predicted value'
+    )
+)
+
+
+
+# Add the fill trace between yhat_lower and yhat_upper
+figw.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=df_result['weekly_upper'],
+        fill=None,
+        mode='lines',
+        line_color='rgba(0,0,0,0)',
+        showlegend=False
+    )
+)
+
+figw.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=df_result['weekly_lower'],
+        fill='tonexty',
+        mode='lines',
+        line_color='rgba(0,0,0,0)',
+        name='confidence interval'
+    )
+)
+
+
+# Set the axis labels
+figw.update_layout(
+    xaxis_title='date',
+    yaxis_title='predicted values',
+    title='Weekly'
+)
 # Define the dropdown options
 options = [{'label': i, 'value': i} for i in df_news['source'].unique()]
 
@@ -100,7 +154,7 @@ fig2 = px.scatter(
     size=f'relevance_score_{symbol.lower()}',
     color_continuous_scale='ice',
     opacity=0.6,
-    labels={'x': 'date', 'y' : 'sentiment score'}
+    labels={'x': 'date', 'y': 'sentiment score'}
 )
 
 app.layout = html.Div(children=[
@@ -125,6 +179,10 @@ app.layout = html.Div(children=[
         dcc.Graph(
             id='stock_graph_prediction',
             figure=fig1
+        ),
+        dcc.Graph(
+            id='weekly_prediction',
+            figure=figw
         )
     ]),
 
@@ -138,7 +196,6 @@ app.layout = html.Div(children=[
         )
     ])
 ])
-
 
 
 # Define the callback to update the graph based on the dropdown selection
@@ -160,8 +217,6 @@ def update_graph(symbol, selected_news_source):
 
     filtered_df = df_news[df_news['source'] == selected_news_source]
 
-
-
     fig_stocks = px.line(
         df_stocks,
         x=df_stocks.index,
@@ -180,8 +235,8 @@ def update_graph(symbol, selected_news_source):
         opacity=0.6
     )
 
-
     return fig_stocks, fig_news
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
