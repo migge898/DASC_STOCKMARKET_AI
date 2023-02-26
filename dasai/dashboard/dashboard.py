@@ -2,8 +2,9 @@ from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
-from dasai.helpers import get_cleaned_data_path, get_tidy_data_path
+from dasai.helpers import get_cleaned_data_path, get_tidy_data_path, get_result_data_path
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
@@ -14,15 +15,19 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
 # see https://plotly.com/python/px-arguments/ for more options
 cleaned_data_path = get_cleaned_data_path()
 tidy_data_path = get_tidy_data_path()
+result_data_path = get_result_data_path()
 
 
 symbols =['AAPL', 'NFLX', 'KO', 'IBM', 'MSFT']
 symbol = symbols[0]
 
-stock_names= {'AAPL': 'Apple' , 'NFLX': 'Netflix', 'KO': 'Coca Cola', 'IBM': 'IBM', 'MSFT': 'Microsoft'}
+stock_names= {'AAPL': 'Apple', 'NFLX': 'Netflix', 'KO': 'Coca Cola', 'IBM': 'IBM', 'MSFT': 'Microsoft'}
 
 df_stocks = pd.read_parquet('..\..' / cleaned_data_path / f'{symbol}.parquet')
 df_news = pd.read_parquet('..\..' / tidy_data_path / f'{symbol.lower()}_news_dense.parquet')
+df_result = pd.read_csv('..\..' / result_data_path / f'{symbol.lower()}_news_forecast_test.csv')
+
+print(df_result)
 
 # Define the dropdown options
 symbol_options = [{'label': symbol, 'value': symbol} for symbol in symbols]
@@ -44,12 +49,44 @@ fig = px.line(
 
 )
 
-fig1 = px.line(
-    df_stocks.head(10),
-    x=df_stocks.head(10).index,
-    y='adjusted_close',
-    labels={'x': 'date', 'adjusted_close' : 'adjusted close values'}
+fig1 = go.Figure()
 
+# Add the line trace for yhat
+fig1.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=df_result['yhat'],
+        name='yhat'
+    )
+)
+
+# Add the fill trace between yhat_lower and yhat_upper
+fig1.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=df_result['yhat_upper'],
+        fill=None,
+        mode='lines',
+        line_color='rgba(0,0,0,0)',
+        showlegend=False
+    )
+)
+
+fig1.add_trace(
+    go.Scatter(
+        x=df_result['ds'],
+        y=df_result['yhat_lower'],
+        fill='tonexty',
+        mode='lines',
+        line_color='rgba(0,0,0,0)',
+        name='Confidence Interval'
+    )
+)
+
+# Set the axis labels
+fig1.update_layout(
+    xaxis_title='date',
+    yaxis_title='adjusted close values'
 )
 
 # Define the dropdown options
