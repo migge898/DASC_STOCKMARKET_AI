@@ -31,3 +31,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+      env:
+        ALPHAVENTAGE_API_KEY: ${{ secrets.ALPHAVENTAGE_API_KEY }}
