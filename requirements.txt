@@ -13,5 +13,4 @@ sphinx-copybutton==0.5.1
 prophet==1.1.2
 plotly==5.13.0
 scikit-learn==1.2.1
-dasai~=0.1.0
 dash~=2.8.1
