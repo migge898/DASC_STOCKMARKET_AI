@@ -128,3 +128,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# own notebooks
+/my_notebooks/
+
+# pycharm
+.idea/
