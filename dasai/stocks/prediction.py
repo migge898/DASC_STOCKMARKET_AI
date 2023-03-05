@@ -12,6 +12,7 @@ def predict_stock_price(
 ) -> Tuple[Prophet, DataFrame]:
     """
     Predict stock price using Prophet and saving the results to a csv file if output_file is specified.
+
     :param stock_df: Dataframe containing stock data
     :type stock_df: pandas.Dataframe
     :param output_file: Path to output file

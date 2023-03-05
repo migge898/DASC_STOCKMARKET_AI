@@ -27,6 +27,7 @@ limit_reached_msg = (
 def generate_time_limit_strings_2022():
     """
     Generate date strings in a specific format
+
     :return: time_limits contains start-date and end-date for all months of 2022
     """
     days_of_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -41,6 +42,7 @@ def generate_time_limit_strings_2022():
 def get_news_by_month(month: int, time_limits: []):
     """
     Helper function to get the 200 most relevant apple news of 2022 by publishing month
+
     :param time_limits: Time limits for all months of the specific year
     :type time_limits: []
     :param month: The month of the news you want
@@ -76,6 +78,7 @@ def get_news_by_month(month: int, time_limits: []):
 def get_aapl_news_2022():
     """
     Gets the Apple news for each month of 2022 and concatenate to one Dataframe
+
     :return: The concatenated Dataframe with the most relevant Apple-news of 2022
     """
     retry_counter = 0
@@ -113,6 +116,7 @@ def get_aapl_news_2022():
 def adjust_dataframe(df: pd.DataFrame):
     """
     This function cleans leftovers created by the concatenations
+
     :param df: Dataframe to adjust
     :type df: pandas.Dataframe
     :return: Adjusted Dataframe
@@ -129,6 +133,7 @@ def adjust_dataframe(df: pd.DataFrame):
 def save_dataframe_to_file(df: pd.DataFrame):
     """
     Save the Dataframe to a json file
+
     :param df: Dataframe to save
     :type df: pandas.Dataframe
     :return: None
@@ -143,7 +148,9 @@ def save_dataframe_to_file(df: pd.DataFrame):
 def load_and_save_news_2022():
     """
     This function will get the news, adjust them and then save them to a .json file
-    :return:
+
+    :return: None
+
     """
     df = get_aapl_news_2022()
     df = adjust_dataframe(df)

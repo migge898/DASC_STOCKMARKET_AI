@@ -1,12 +1,14 @@
 Module documentation
 ====================
 
+.. toctree::
+    :maxdepth: 2
 
-.. warning::
+    apple_news
+    stocks
 
-   This module is still under development. The API is not stable yet.
 
-.. automodule:: dasai.stocks.load_stocks
-   :members:
-   :undoc-members:
-   :show-inheritance:
+
+
+
+

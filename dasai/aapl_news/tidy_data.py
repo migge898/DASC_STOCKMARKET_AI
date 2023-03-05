@@ -7,6 +7,7 @@ from dasai.helpers import get_tidy_data_path
 def load_apple_news(input_file: str):
     """
     Loads the Apple news from the .json file
+
     :param input_file: Name of the raw json file to load, must be in the raw_data folder
     :type input_file: str
     :return: Dataframe with raw news
@@ -18,6 +19,7 @@ def load_apple_news(input_file: str):
 def transform_date(df: pd.DataFrame):
     """
     Transform the custom date-format-string to a real datetime
+
     :param df: Dataframe for which the column should be transformed
     :type df: pandas.Dataframe
     :return: Dataframe with transformed datetime column
@@ -29,6 +31,7 @@ def transform_date(df: pd.DataFrame):
 def remove_useless_columns(df: pd.DataFrame):
     """
     Keep only relevant columns for analysis
+
     :param df: Dataframe to remove columns from
     :type df: pandas.Dataframe
     :return: reduced Dataframe
@@ -51,6 +54,7 @@ def remove_useless_columns(df: pd.DataFrame):
 def flatten_nested_json_df(df):
     """
     Search for columns to explode/flatten recursively
+
     :param df: Dataframe to flatten
     :type df: pandas.Dataframe
     :return: Flattened and exploded dataframe
@@ -102,6 +106,7 @@ def flatten_nested_json_df(df):
 def flatten_ticket_sentiment(df: pd.DataFrame):
     """
     Flatten/explode the json list ticker_sentiment
+
     :param df: Dataframe to flatten
     :type df: pandas.Dataframe
     :return: Flat and exploded Dataframe
@@ -117,6 +122,7 @@ def tidy_data(df: pd.DataFrame):
     A function to tidy the raw apple news data up
     (keep only relevant ticker, remove useless column 'ticker',
     rename some columns and set correct datatypes)
+
     :param df: Dataframe to clean
     :type df: pandas.Dataframe
     :return: A clean and reduced version of the input Dataframe
@@ -149,6 +155,7 @@ def tidy_data(df: pd.DataFrame):
 def save_dataframe(df: pd.DataFrame, output_file: str):
     """
     Saves the specified Dataframe as a .parquet file
+
     :param df: The Dataframe to save
     :type df: pandas.Dataframe
     :param output_file: The name of the output file
@@ -164,6 +171,7 @@ def save_dataframe(df: pd.DataFrame, output_file: str):
 def tidy_and_save_news(input_file: str, output_file: str):
     """
     Loads the raw .json file, create tidy data from it and save this as a .parquet file
+
     :param input_file: The name of the input file, has to be in the raw_data folder
     :type input_file: str
     :param output_file: The name of the output file, will be saved in the tidy_data folder

@@ -71,6 +71,7 @@ def download_and_save_stock_data(symbol, overwrite=False):
 def convert_to_cleaned_data(input_file: str, output_file: str):
     """
     Convert the raw data to a cleaned data format.
+
     :param input_file: path to the raw data
     :type input_file: str
     :param output_file: path to the cleaned data
