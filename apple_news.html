@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple News &mdash; dasai 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Stocks prediction" href="stocks.html" />
+    <link rel="prev" title="Module documentation" href="module_documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> dasai
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="module_documentation.html">Module documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Apple News</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022.adjust_dataframe"><code class="docutils literal notranslate"><span class="pre">adjust_dataframe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022.generate_time_limit_strings_2022"><code class="docutils literal notranslate"><span class="pre">generate_time_limit_strings_2022()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022.get_aapl_news_2022"><code class="docutils literal notranslate"><span class="pre">get_aapl_news_2022()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022.get_news_by_month"><code class="docutils literal notranslate"><span class="pre">get_news_by_month()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022.load_and_save_news_2022"><code class="docutils literal notranslate"><span class="pre">load_and_save_news_2022()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022.save_dataframe_to_file"><code class="docutils literal notranslate"><span class="pre">save_dataframe_to_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022_dense.adjust_dataframe"><code class="docutils literal notranslate"><span class="pre">adjust_dataframe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022_dense.generate_time_limit_strings_2022"><code class="docutils literal notranslate"><span class="pre">generate_time_limit_strings_2022()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022_dense.get_aapl_news_2022"><code class="docutils literal notranslate"><span class="pre">get_aapl_news_2022()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022_dense.get_news_by_month"><code class="docutils literal notranslate"><span class="pre">get_news_by_month()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022_dense.load_and_save_news_2022"><code class="docutils literal notranslate"><span class="pre">load_and_save_news_2022()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.load_news_2022_dense.save_dataframe_to_file"><code class="docutils literal notranslate"><span class="pre">save_dataframe_to_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.flatten_nested_json_df"><code class="docutils literal notranslate"><span class="pre">flatten_nested_json_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.flatten_ticket_sentiment"><code class="docutils literal notranslate"><span class="pre">flatten_ticket_sentiment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.load_apple_news"><code class="docutils literal notranslate"><span class="pre">load_apple_news()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.remove_useless_columns"><code class="docutils literal notranslate"><span class="pre">remove_useless_columns()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.save_dataframe"><code class="docutils literal notranslate"><span class="pre">save_dataframe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.tidy_and_save_news"><code class="docutils literal notranslate"><span class="pre">tidy_and_save_news()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.tidy_data"><code class="docutils literal notranslate"><span class="pre">tidy_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dasai.aapl_news.tidy_data.transform_date"><code class="docutils literal notranslate"><span class="pre">transform_date()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stocks.html">Stocks prediction</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dasai</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="module_documentation.html">Module documentation</a></li>
+      <li class="breadcrumb-item active">Apple News</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/migge898/DASC_STOCKMARKET_AI/blob/documentation_setup/docs/source/apple_news.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="apple-news">
+<span id="id1"></span><h1>Apple News<a class="headerlink" href="#apple-news" title="Permalink to this heading"></a></h1>
+<p>This module is used to load the Apple News data from <a class="reference external" href="https://www.alphavantage.co/documentation/">ALPHA VANTAGE</a>
+and transforms it into a tidy format for later analysis.</p>
+<span class="target" id="module-dasai.aapl_news.load_news_2022"></span><dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022.adjust_dataframe">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022.</span></span><span class="sig-name descname"><span class="pre">adjust_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022.adjust_dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>This function cleans leftovers created by the concatenations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to adjust</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Adjusted Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022.generate_time_limit_strings_2022">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022.</span></span><span class="sig-name descname"><span class="pre">generate_time_limit_strings_2022</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022.generate_time_limit_strings_2022" title="Permalink to this definition"></a></dt>
+<dd><p>Generate date strings in a specific format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>time_limits contains start-date and end-date for all months of 2022</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022.get_aapl_news_2022">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022.</span></span><span class="sig-name descname"><span class="pre">get_aapl_news_2022</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022.get_aapl_news_2022" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the Apple news for each month of 2022 and concatenate to one Dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The concatenated Dataframe with the most relevant Apple-news of 2022</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022.get_news_by_month">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022.</span></span><span class="sig-name descname"><span class="pre">get_news_by_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022.get_news_by_month" title="Permalink to this definition"></a></dt>
+<dd><p>Helper function to get the 200 most relevant apple news of 2022 by publishing month</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_limits</strong> (<em>[</em><em>]</em>) – Time limits for all months of the specific year</p></li>
+<li><p><strong>month</strong> (<em>int</em>) – The month of the news you want</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>200 most relevant apple news of specified month</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022.load_and_save_news_2022">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022.</span></span><span class="sig-name descname"><span class="pre">load_and_save_news_2022</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022.load_and_save_news_2022" title="Permalink to this definition"></a></dt>
+<dd><p>This function will get the news, adjust them and then save them to a .json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022.save_dataframe_to_file">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022.</span></span><span class="sig-name descname"><span class="pre">save_dataframe_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022.save_dataframe_to_file" title="Permalink to this definition"></a></dt>
+<dd><p>Save the Dataframe to a json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to save</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-dasai.aapl_news.load_news_2022_dense"></span><dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022_dense.adjust_dataframe">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022_dense.</span></span><span class="sig-name descname"><span class="pre">adjust_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022_dense.adjust_dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>This function cleans leftovers created by the concatenations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to adjust</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Adjusted Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022_dense.generate_time_limit_strings_2022">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022_dense.</span></span><span class="sig-name descname"><span class="pre">generate_time_limit_strings_2022</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022_dense.generate_time_limit_strings_2022" title="Permalink to this definition"></a></dt>
+<dd><p>Generate date strings in a specific format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>time_limits contains dates with a 5-day gap for all months of 2022</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022_dense.get_aapl_news_2022">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022_dense.</span></span><span class="sig-name descname"><span class="pre">get_aapl_news_2022</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022_dense.get_aapl_news_2022" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the apple news for each month of 2022 and concatenate to one Dataframe
+News are requested in 5-day timeframes to ensure an evenly distributed newsfeed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The concatenated Dataframe with the most relevant Apple-news of 2022 (more evenly distributed)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022_dense.get_news_by_month">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022_dense.</span></span><span class="sig-name descname"><span class="pre">get_news_by_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_from</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022_dense.get_news_by_month" title="Permalink to this definition"></a></dt>
+<dd><p>Helper function to get the most relevant apple news of 2022 by publishing month
+This function returns more evenly distributed and more dense data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_from</strong> (<em>string</em>) – Start time of the news you want</p></li>
+<li><p><strong>time_to</strong> (<em>string</em>) – Max. publishing date of the news you want</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Max. 200 most relevant apple news of specified timeframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022_dense.load_and_save_news_2022">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022_dense.</span></span><span class="sig-name descname"><span class="pre">load_and_save_news_2022</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022_dense.load_and_save_news_2022" title="Permalink to this definition"></a></dt>
+<dd><p>This function will get the news, adjust them and then save them to a .json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.load_news_2022_dense.save_dataframe_to_file">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.load_news_2022_dense.</span></span><span class="sig-name descname"><span class="pre">save_dataframe_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.load_news_2022_dense.save_dataframe_to_file" title="Permalink to this definition"></a></dt>
+<dd><p>Save the Dataframe to a json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to save</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-dasai.aapl_news.tidy_data"></span><dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.flatten_nested_json_df">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">flatten_nested_json_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.flatten_nested_json_df" title="Permalink to this definition"></a></dt>
+<dd><p>Search for columns to explode/flatten recursively</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to flatten</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Flattened and exploded dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.flatten_ticket_sentiment">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">flatten_ticket_sentiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.flatten_ticket_sentiment" title="Permalink to this definition"></a></dt>
+<dd><p>Flatten/explode the json list ticker_sentiment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to flatten</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Flat and exploded Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.load_apple_news">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">load_apple_news</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.load_apple_news" title="Permalink to this definition"></a></dt>
+<dd><p>Loads the Apple news from the .json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_file</strong> (<em>str</em>) – Name of the raw json file to load, must be in the raw_data folder</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataframe with raw news</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.remove_useless_columns">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">remove_useless_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.remove_useless_columns" title="Permalink to this definition"></a></dt>
+<dd><p>Keep only relevant columns for analysis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to remove columns from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>reduced Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.save_dataframe">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">save_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.save_dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the specified Dataframe as a .parquet file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.Dataframe</em>) – The Dataframe to save</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.tidy_and_save_news">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">tidy_and_save_news</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.tidy_and_save_news" title="Permalink to this definition"></a></dt>
+<dd><p>Loads the raw .json file, create tidy data from it and save this as a .parquet file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_file</strong> (<em>str</em>) – The name of the input file, has to be in the raw_data folder</p></li>
+<li><p><strong>output_file</strong> (<em>str</em>) – The name of the output file, will be saved in the tidy_data folder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.tidy_data">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">tidy_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.tidy_data" title="Permalink to this definition"></a></dt>
+<dd><p>A function to tidy the raw apple news data up
+(keep only relevant ticker, remove useless column ‘ticker’,
+rename some columns and set correct datatypes)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe to clean</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A clean and reduced version of the input Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dasai.aapl_news.tidy_data.transform_date">
+<span class="sig-prename descclassname"><span class="pre">dasai.aapl_news.tidy_data.</span></span><span class="sig-name descname"><span class="pre">transform_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dasai.aapl_news.tidy_data.transform_date" title="Permalink to this definition"></a></dt>
+<dd><p>Transform the custom date-format-string to a real datetime</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.Dataframe</em>) – Dataframe for which the column should be transformed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataframe with transformed datetime column</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="module_documentation.html" class="btn btn-neutral float-left" title="Module documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stocks.html" class="btn btn-neutral float-right" title="Stocks prediction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Miguel Mioskowski, Marie Koch, Damien Völker.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
