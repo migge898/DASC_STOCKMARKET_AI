@@ -31,7 +31,7 @@ def generate_time_limit_strings_2022():
     :return: time_limits contains dates with a 5-day gap for all months of 2022
     """
     # skip january and february
-    days_of_month = [31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    # days_of_month = [31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     time_limits = []
     for i in range(3, 13):
         month = f"{i}" if i > 9 else f"0{i}"  # two-digit month

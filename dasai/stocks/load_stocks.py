@@ -3,7 +3,7 @@ import csv
 import os
 import pandas as pd
 
-from dasai.helpers import *
+from dasai.helpers import get_raw_data_path
 
 from dasai.stocks import my_key
 
